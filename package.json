@@ -1,7 +1,7 @@
 {
   "name": "just",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create shell commands with natural language via AI",
   "main": "index.ts",
   "bin": {
     "jsut": "node index.js"
