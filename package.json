@@ -4,7 +4,7 @@
   "description": "Create shell commands with natural language via AI",
   "main": "index.ts",
   "bin": {
-    "just": "node index.js"
+    "just": "index.js"
   },
   "scripts": {
     "start": "ts-node index.ts",
