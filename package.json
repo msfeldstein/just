@@ -1,6 +1,6 @@
 {
   "name": "just-shell-ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create shell commands with natural language via AI",
   "main": "index.ts",
   "bin": {
