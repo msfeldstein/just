@@ -2,6 +2,10 @@
 
 > Just do the thing
 
+```
+npm install -g just-shell-ai
+```
+
 `just` lets you run shell commands via natural language instead of needing to memorize or lookup arcane incantations.
 
 ```
