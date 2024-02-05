@@ -5,8 +5,8 @@ import * as fs from "fs";
 import { spawnSync, spawn } from "child_process";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import handleOpenAIKey from "./key-settings";
-import query from "./openai";
+import handleOpenAIKey from "./key-settings.js";
+import query from "./openai.js";
 
 const argv = yargs(hideBin(process.argv))
   .option("setKey", { alias: "k", describe: "Set a new OpenAI Key" })
