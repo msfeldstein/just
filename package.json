@@ -6,6 +6,7 @@
   "bin": {
     "just": "build/index.js"
   },
+  "type": "module",
   "scripts": {
     "start": "ts-node index.ts",
     "clean": "rm build/*",
