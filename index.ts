@@ -14,9 +14,10 @@ const argv = yargs(hideBin(process.argv))
   .parseSync();
 
 async function run() {
-  const key = await handleOpenAIKey(argv);
+  const { key, model } = await handleOpenAIKey(argv);
+  if (argv.setKey) process.exit(0);
   const userInput = argv._.join(" ");
-  const command = await query(userInput, key);
+  const command = await query(userInput, key, model);
 
   if (!command) {
     console.error("Something went wrong");
