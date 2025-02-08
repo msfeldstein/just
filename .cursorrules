@@ -1,3 +1,4 @@
+The github repo for this project is https://github.com/msfeldstein/just
 example anthropic prompt:
 
 import Anthropic from '@anthropic-ai/sdk';
