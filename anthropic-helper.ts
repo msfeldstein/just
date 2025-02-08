@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import Anthropic from '@anthropic-ai/sdk';
 
 const SYSTEM_PROMPT = `You are a helpful assistant who writes mac osx terminal commands based on a users request.
 Respond with only the command and nothing else.  Do not explain or wrap in code blocks.`;
@@ -9,13 +9,13 @@ export default async function query(
   model: string
 ) {
   const start = performance.now();
-  const openai = new OpenAI({
+  const anthropic = new Anthropic({
     apiKey: key,
   });
-  const completion = await openai.chat.completions.create({
+  const completion = await anthropic.messages.create({
     messages: [
       {
-        role: "system",
+        role: "assistant",
         content: SYSTEM_PROMPT,
       },
       {
@@ -23,11 +23,12 @@ export default async function query(
         content: userInput,
       },
     ],
-    model: model,
+    model: "claude-3-sonnet-20240229",
+    max_tokens: 1000,
   });
   console.log("Took", performance.now() - start);
-  let command = completion.choices[0].message.content!;
+  let command = completion.content[0].type === 'text' ? completion.content[0].text : '';
   command = command.replace(/```bash/g, "");
   command = command.replace(/```/g, "");
   return command.trim();
-}
+} 

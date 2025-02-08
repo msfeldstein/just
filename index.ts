@@ -1,20 +1,19 @@
 #!/usr/bin/env node
 
 import * as fs from "fs";
-
 import { spawnSync, spawn } from "child_process";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import handleOpenAIKey from "./key-settings";
-import query from "./openai-helper";
+import handleAnthropicKey from "./key-settings";
+import query from "./anthropic-helper";
 
 const argv = yargs(hideBin(process.argv))
-  .option("setKey", { alias: "k", describe: "Set a new OpenAI Key" })
+  .option("setKey", { alias: "k", describe: "Set a new Anthropic API Key" })
   .help()
   .parseSync();
 
 async function run() {
-  const { key, model } = await handleOpenAIKey(argv);
+  const { key, model } = await handleAnthropicKey(argv);
   if (argv.setKey) process.exit(0);
   const userInput = argv._.join(" ");
   const command = await query(userInput, key, model);
@@ -55,4 +54,5 @@ async function run() {
     }
   });
 }
+
 run();

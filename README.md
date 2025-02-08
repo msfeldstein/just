@@ -19,4 +19,4 @@ $ just rename all the pngs in this folder to a numbered list
 > for i in *.png; do mv "$i" "${i/\.png/$(printf "%03d" $(echo "$i" | sed 's/[^0-9]*//g'))}.png"; done
 ```
 
-You'll need your own OpenAI key that you can enter the first time you run, or change it with `just --setKey`.
+You'll need your own Anthropic API key that you can enter the first time you run, or change it with `just --setKey`.
