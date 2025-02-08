@@ -1,0 +1,36 @@
+example anthropic prompt:
+
+import Anthropic from '@anthropic-ai/sdk';
+
+const SYSTEM_PROMPT = `You are a helpful assistant who writes mac osx terminal commands based on a users request.
+Respond with only the command and nothing else.  Do not explain or wrap in code blocks.`;
+
+export default async function query(
+  userInput: string,
+  key: string,
+  model: string
+) {
+  const start = performance.now();
+  const anthropic = new Anthropic({
+    apiKey: key,
+  });
+  const completion = await anthropic.messages.create({
+    messages: [
+      {
+        role: "assistant",
+        content: SYSTEM_PROMPT,
+      },
+      {
+        role: "user",
+        content: userInput,
+      },
+    ],
+    model: "claude-3-sonnet-20240229",
+    max_tokens: 1000,
+  });
+  console.log("Took", performance.now() - start);
+  let command = completion.content[0].type === 'text' ? completion.content[0].text : '';
+  command = command.replace(/```bash/g, "");
+  command = command.replace(/```/g, "");
+  return command.trim();
+}
